@@ -16,7 +16,7 @@ interface AuthContextType {
   logout: () => void;
 }
 
-const API = 'http://localhost:5000/api';
+const API = 'https://novachartbox.onrender.com/api';
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {

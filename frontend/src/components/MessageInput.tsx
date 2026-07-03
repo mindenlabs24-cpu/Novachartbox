@@ -61,7 +61,7 @@ export default function MessageInput({ onSendMessage, onTyping, onStopTyping, to
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       });
       const msgType = type.startsWith('image') ? 'image' : type.startsWith('video') ? 'video' : type.startsWith('audio') ? 'voice_note' : 'file';
-      onSendMessage(msgType, text.trim() || file.name, `http://localhost:5000${res.data.url}`, res.data.name, res.data.size);
+      onSendMessage(msgType, text.trim() || file.name, `https://novachartbox.onrender.com${res.data.url}`, res.data.name, res.data.size);
       setText('');
       setMediaPreview(null);
     } finally {

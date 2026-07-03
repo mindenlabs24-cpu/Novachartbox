@@ -28,7 +28,7 @@ interface Contact {
   avatar: string;
 }
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = 'https://novachartbox.onrender.com';
 
 export default function ChatWindow() {
   const { user, logout } = useAuth();
