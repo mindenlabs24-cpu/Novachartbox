@@ -4,15 +4,15 @@ import axios from 'axios';
 interface User {
   _id: string;
   username: string;
-  email: string;
+  phone: string;
   avatar: string;
   token: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<void>;
-  register: (username: string, email: string, password: string) => Promise<void>;
+  login: (phone: string, password: string) => Promise<void>;
+  register: (username: string, phone: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -27,14 +27,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (saved) setUser(JSON.parse(saved));
   }, []);
 
-  const login = async (email: string, password: string) => {
-    const res = await axios.post(`${API}/auth/login`, { email, password });
+  const login = async (phone: string, password: string) => {
+    const res = await axios.post(`${API}/auth/login`, { phone, password });
     setUser(res.data);
     localStorage.setItem('novachart_user', JSON.stringify(res.data));
   };
 
-  const register = async (username: string, email: string, password: string) => {
-    const res = await axios.post(`${API}/auth/register`, { username, email, password });
+  const register = async (username: string, phone: string, password: string) => {
+    const res = await axios.post(`${API}/auth/register`, { username, phone, password });
     setUser(res.data);
     localStorage.setItem('novachart_user', JSON.stringify(res.data));
   };

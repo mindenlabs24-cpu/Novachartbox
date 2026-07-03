@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 export default function AuthPage() {
   const { login, register } = useAuth();
   const [tab, setTab] = useState<'login' | 'register'>('login');
-  const [form, setForm] = useState({ username: '', email: '', password: '' });
+  const [form, setForm] = useState({ username: '', phone: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -14,9 +14,9 @@ export default function AuthPage() {
     setLoading(true);
     try {
       if (tab === 'login') {
-        await login(form.email, form.password);
+        await login(form.phone, form.password);
       } else {
-        await register(form.username, form.email, form.password);
+        await register(form.username, form.phone, form.password);
       }
     } catch (err: any) {
       setError(err?.response?.data?.message || 'Hitilafu imetokea. Jaribu tena.');
@@ -58,7 +58,7 @@ export default function AuthPage() {
           <form className="auth-form" onSubmit={handleSubmit}>
             {tab === 'register' && (
               <div className="form-group">
-                <label htmlFor="input-username">Jina la Mtumiaji</label>
+                <label htmlFor="input-username">Jina lako</label>
                 <input
                   id="input-username"
                   className="form-input"
@@ -70,18 +70,20 @@ export default function AuthPage() {
                 />
               </div>
             )}
+
             <div className="form-group">
-              <label htmlFor="input-email">Barua Pepe</label>
+              <label htmlFor="input-phone">Namba ya Simu</label>
               <input
-                id="input-email"
+                id="input-phone"
                 className="form-input"
-                type="email"
-                placeholder="mfano@barua.com"
-                value={form.email}
-                onChange={set('email')}
+                type="tel"
+                placeholder="+255 7xx xxx xxx"
+                value={form.phone}
+                onChange={set('phone')}
                 required
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="input-password">Nywila</label>
               <input
