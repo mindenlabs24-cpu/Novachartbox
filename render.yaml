@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: novachart-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://mindenlabs24_db_user:uaiEFPX7pEq2tf1X@cluster0.myaa5js.mongodb.net/Novachartbox?appName=Cluster0
+      - key: JWT_SECRET
+        value: novachart_super_secret_jwt_key_2024
+      - key: PORT
+        value: 10000
