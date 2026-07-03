@@ -7,6 +7,7 @@ export default function AuthPage() {
   const [form, setForm] = useState({ username: '', phone: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,15 +87,31 @@ export default function AuthPage() {
 
             <div className="form-group">
               <label htmlFor="input-password">Nywila</label>
-              <input
-                id="input-password"
-                className="form-input"
-                type="password"
-                placeholder="••••••••"
-                value={form.password}
-                onChange={set('password')}
-                required
-              />
+              <div style={{ position: 'relative' }}>
+                <input
+                  id="input-password"
+                  className="form-input"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  value={form.password}
+                  onChange={set('password')}
+                  style={{ paddingRight: '42px' }}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(s => !s)}
+                  style={{
+                    position: 'absolute', right: '12px', top: '50%',
+                    transform: 'translateY(-50%)', background: 'none',
+                    border: 'none', cursor: 'pointer', fontSize: '18px',
+                    color: 'var(--text-muted)', padding: 0, lineHeight: 1
+                  }}
+                  title={showPassword ? 'Ficha nywila' : 'Onyesha nywila'}
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
             </div>
 
             {error && <div className="auth-error">⚠ {error}</div>}
